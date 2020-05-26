@@ -1,8 +1,8 @@
 package pieces;
 
-//Pawn class which is a type of Piece
-public class Pawn extends Piece{
-	public Pawn(int x, int y, String color) {
+//Knight class which is type Piece
+public class Knight extends Piece{
+	public Knight(int x, int y, String color) {
 		super(x,y,color);
 	}
 	public void move(int x, int y) {
@@ -13,4 +13,5 @@ public class Pawn extends Piece{
 	public boolean isVaild(int x, int y) {
 		return true;
 	}
+
 }

@@ -12,11 +12,8 @@ public class ChessGame {
 		return false;
 	}
 	
-	//updates board
-	public void update() {
-		//update
-	}
 	public static void main(String[] args) {
+		System.out.println("Welcome to chess");
 		
 	}
 
