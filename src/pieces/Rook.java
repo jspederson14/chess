@@ -5,10 +5,13 @@ public class Rook extends Piece{
 	public Rook(int x, int y, String color) {
 		super(x,y,color);
 	}
-	public void move(int x, int y) {
-		//move
+	public String giveType() {
+		if(color.equals("White"))
+			return "R";
+		else if(color.equals("Black"))
+			return "r";
+		return "error";
 	}
-	
 	@Override
 	public boolean isVaild(int x, int y) {
 		return true;

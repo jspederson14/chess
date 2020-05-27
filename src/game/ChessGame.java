@@ -14,7 +14,11 @@ public class ChessGame {
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to chess");
-		
+		Board b = new Board();
+		b.setUp();
+		b.print();
+		System.out.println(b.play(0, 1, 0, 2));
+		b.print();
 	}
 
 }

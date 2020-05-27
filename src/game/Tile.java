@@ -9,7 +9,18 @@ public class Tile {
 		this.y=y;
 		p = null;
 	}
+	//adds a piece to the tile
 	public void addPiece(Piece p) {
 		this.p=p;
+	}
+	//gives the piece being manipulated
+	public Piece givePiece() {
+		return p;
+	}
+	public void printPiece() {
+		if(p==null)
+			System.out.print(" * ");
+		else
+			System.out.print(" "+p.giveType()+" ");
 	}
 }
