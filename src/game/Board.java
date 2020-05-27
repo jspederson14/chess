@@ -43,10 +43,10 @@ public class Board{
 	}
 	//allows for a piece to be passed between tiles and returns if move was able to be made
 	public boolean play(int startX, int startY, int endX, int endY) {
-		Piece curr = board[startX][startY].givePiece();
-		if(curr.move(endX, endY)) {
-			board[startX][startY].addPiece(null);
-			board[endX][endY].addPiece(curr);
+		Piece curr = board[startY][startX].givePiece();
+		if(curr.move(endY, endX)) {
+			board[startY][startX].addPiece(null);
+			board[endY][endX].addPiece(curr);
 			return true;
 		}
 		return false;

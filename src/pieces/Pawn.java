@@ -15,11 +15,11 @@ public class Pawn extends Piece{
 	@Override
 	public boolean isVaild(int endX, int endY) {
 		if(this.color.equals("White")) {
-			if((this.x==endX && this.y==endY-1)||(endX==6 && this.y==endY-2))
+			if((this.x-1==endX && this.y==endY)||(this.x==6 && this.x-2==endX && this.y==endY))
 				return true;
 		}
 		if(this.color.equals("Black")) {
-			if((this.x==endX && this.y==endY+1)||(endX==1 && this.y==endY+2))
+			if((this.x+1==endX&& this.y==endY)||(this.x==1 && this.x+2==endX && this.y==endY))
 				return true;
 		}
 		return false;

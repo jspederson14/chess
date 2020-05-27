@@ -17,7 +17,8 @@ public class ChessGame {
 		Board b = new Board();
 		b.setUp();
 		b.print();
-		System.out.println(b.play(0, 1, 0, 2));
+		b.play(7,6,7,4);
+		b.play(0, 1, 0, 2);
 		b.print();
 	}
 

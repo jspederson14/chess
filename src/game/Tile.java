@@ -13,6 +13,14 @@ public class Tile {
 	public void addPiece(Piece p) {
 		this.p=p;
 	}
+	//gives x
+	public int giveX() {
+		return this.x;
+	}
+	//gives y
+	public int giveY() {
+		return this.y;
+	}
 	//gives the piece being manipulated
 	public Piece givePiece() {
 		return p;
