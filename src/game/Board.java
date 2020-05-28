@@ -1,9 +1,12 @@
 package game;
+import java.util.ArrayList;
+
 import pieces.*;
 
 //class to represnt the board
 public class Board{
 	public Tile[][] board = new Tile[8][8];
+	public ArrayList<Piece> out = new ArrayList<Piece>();
 	//makes a board to with tiles
 	public Board(){
 		for(int i=0; i<board.length; i++) {
@@ -11,6 +14,10 @@ public class Board{
 				this.board[i][j] = new Tile(i,j);
 			}
 		}
+	}
+	//gives the piece at a tile
+	public String givePiece(int x, int y) {
+		return board[x][y].givePiece().giveType()+" X:"+board[x][y].giveX()+" Y:"+board[x][y].giveY();
 	}
 	//sets up the board for a game
 	public void setUp() {
@@ -44,7 +51,11 @@ public class Board{
 	//allows for a piece to be passed between tiles and returns if move was able to be made
 	public boolean play(int startX, int startY, int endX, int endY) {
 		Piece curr = board[startY][startX].givePiece();
-		if(curr.move(endY, endX)) {
+		if(curr.capture(endX, endY, board[endX][endY])) {
+			out.add(board[endX][endY].givePiece());
+			board[endX][endY].addPiece(null);
+		}
+		else if(curr.move(endY, endX)) {
 			board[startY][startX].addPiece(null);
 			board[endY][endX].addPiece(curr);
 			return true;
