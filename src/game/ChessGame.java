@@ -13,7 +13,10 @@ public class ChessGame {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("Welcome to chess");
+		GUI g = new GUI();
+		g.GUI();
+		
+		/*System.out.println("Welcome to chess");
 		Board b = new Board();
 		b.setUp();
 		b.print();
@@ -27,6 +30,7 @@ public class ChessGame {
 		b.play(4, 6, 4, 4);
 		b.play(3, 3, 4, 4);
 		b.print();
+		*/
 	}
 
 }

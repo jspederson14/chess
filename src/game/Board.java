@@ -47,9 +47,6 @@ public class Board{
 		board[7][6].addPiece(new Knight(7,6,"White"));
 		board[7][7].addPiece(new Rook(7,7,"White"));
 	}
-	//makes the GUI for the board
-	public void GUI() {
-	}
 	//allows for a piece to be passed between tiles and returns if move was able to be made
 	public boolean play(int startX, int startY, int endX, int endY) {
 		Piece curr = board[startY][startX].givePiece();
