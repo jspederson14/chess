@@ -2,8 +2,8 @@ package pieces;
 
 //Bishop class with is a type Piece
 public class Bishop extends Piece{
-	public Bishop(int x, int y, String color) {
-		super(x,y,color);
+	public Bishop(int y, int x, String color) {
+		super(y,x,color);
 	}
 	public String giveType() {
 		if(color.equals("White"))

@@ -1,9 +1,11 @@
 package pieces;
 
+import game.Tile;
+
 //Pawn class which is a type of Piece
 public class Pawn extends Piece{
-	public Pawn(int x, int y, String color) {
-		super(x,y,color);
+	public Pawn(int y, int x, String color) {
+		super(y,x,color);
 	}
 	public String giveType() {
 		if(color.equals("White"))
@@ -15,13 +17,25 @@ public class Pawn extends Piece{
 	@Override
 	public boolean isVaild(int endX, int endY) {
 		if(this.color.equals("White")) {
-			if((this.x-1==endX && this.y==endY)||(this.x==6 && this.x-2==endX && this.y==endY))
+			if((this.x==endX && this.y-1==endY)||(this.y==6 && this.x==endX && this.y-2==endY))
 				return true;
 		}
 		if(this.color.equals("Black")) {
-			if((this.x+1==endX&& this.y==endY)||(this.x==1 && this.x+2==endX && this.y==endY))
+			if((this.x==endX&& this.y+1==endY)||(this.y==1 && this.x==endX && this.y+2==endY))
 				return true;
 		}
+		return false;
+	}
+	@Override
+	public boolean capture(int endX, int endY, Tile t) {
+		if(this.color.equals("White")) {
+			if((t.giveX()==endX && t.giveY()==endY)&&(this.x-1==endX && this.y-1==endY)||(this.x+1==endX && this.y-1==endY))
+				return true;
+			}
+			if(this.color.equals("Black")) {
+				if((t.giveX()==endX && t.giveY()==endY)&&(this.x+1==endX&& this.y+1==endY)||(this.x-1==endX&& this.y+1==endY))
+					return true;
+			}
 		return false;
 	}
 }

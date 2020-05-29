@@ -7,7 +7,7 @@ public abstract class Piece {
 	public String color;
 	
 	//defines piece
-	public Piece(int x, int y, String color) {
+	public Piece(int y, int x, String color) {
 		this.x=x;
 		this.y=y;
 		this.color=color;

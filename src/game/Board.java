@@ -17,7 +17,9 @@ public class Board{
 	}
 	//gives the piece at a tile
 	public String givePiece(int x, int y) {
-		return board[x][y].givePiece().giveType()+" X:"+board[x][y].giveX()+" Y:"+board[x][y].giveY();
+		if(board[y][x].givePiece()==null)
+			return "Nothing X:"+x+" Y:"+y;
+		return board[y][x].givePiece().giveType()+" X:"+board[y][x].giveX()+" Y:"+board[y][x].giveY();
 	}
 	//sets up the board for a game
 	public void setUp() {
@@ -51,11 +53,11 @@ public class Board{
 	//allows for a piece to be passed between tiles and returns if move was able to be made
 	public boolean play(int startX, int startY, int endX, int endY) {
 		Piece curr = board[startY][startX].givePiece();
-		if(curr.capture(endX, endY, board[endX][endY])) {
-			out.add(board[endX][endY].givePiece());
-			board[endX][endY].addPiece(null);
+		if(curr.capture(endX, endY, board[endY][endX])) {
+			out.add(board[endY][endX].givePiece());
+			board[endY][endX].addPiece(null);
 		}
-		else if(curr.move(endY, endX)) {
+		else if(curr.move(endX, endY)) {
 			board[startY][startX].addPiece(null);
 			board[endY][endX].addPiece(curr);
 			return true;

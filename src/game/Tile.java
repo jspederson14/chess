@@ -3,7 +3,7 @@ import pieces.*;
 public class Tile {
 	public int x,y;
 	public Piece p;
-	public Tile(int x, int y) {
+	public Tile(int y, int x) {
 		super();
 		this.x=x;
 		this.y=y;
