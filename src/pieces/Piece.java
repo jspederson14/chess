@@ -25,10 +25,14 @@ public abstract class Piece {
 	public String giveCord() {
 		return "X:"+x+" Y:"+y;
 	}
+	//gives color
+	public String giveColor() {
+		return color;
+	}
 	//returns if a capture is can be made
 	public boolean capture(int endX, int endY, Tile t) {
 		if(isVaild(endX,endY))
-			if(t.giveX()==endX && t.giveY()==endY)
+			if(!t.givePiece().giveColor().equals(color))
 				return true;
 		return false;
 	}

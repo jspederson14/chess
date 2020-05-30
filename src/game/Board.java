@@ -15,11 +15,22 @@ public class Board{
 			}
 		}
 	}
+	//checks to see if the game has ended
+	public boolean gameOver() {
+		for(Piece cap:out)
+			if(cap.giveType().equals("k")||cap.giveType().equals("K"))
+				return true;
+		return false;
+	}
 	//gives the piece at a tile
 	public String givePiece(int x, int y) {
 		if(board[y][x].givePiece()==null)
 			return "Nothing X:"+x+" Y:"+y;
 		return board[y][x].givePiece().giveType()+" X:"+board[y][x].giveX()+" Y:"+board[y][x].giveY();
+	}
+	//gives a tile for the given coordinates
+	public Tile giveTile(int x, int y) {
+		return board[y][x];
 	}
 	//sets up the board for a game
 	public void setUp() {
