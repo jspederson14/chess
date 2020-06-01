@@ -28,6 +28,13 @@ public class Board{
 			return "Nothing X:"+x+" Y:"+y;
 		return board[y][x].givePiece().giveType()+" X:"+board[y][x].giveX()+" Y:"+board[y][x].giveY();
 	}
+	//gives color of piece
+	public boolean isWhite(int x, int y) {
+		if(board[y][x].givePiece().giveColor().equals("White"))
+			return true;
+		return false;
+			
+	}
 	//gives a tile for the given coordinates
 	public Tile giveTile(int x, int y) {
 		return board[y][x];
@@ -64,6 +71,7 @@ public class Board{
 		if(curr.capture(endX, endY, board[endY][endX])) {
 			out.add(board[endY][endX].givePiece());
 			board[endY][endX].addPiece(null);
+			return true;
 		}
 		else if(curr.move(endX, endY)) {
 			board[startY][startX].addPiece(null);

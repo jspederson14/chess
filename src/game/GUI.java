@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
@@ -9,6 +10,7 @@ import javax.swing.JPanel;
 
 import pieces.*;
 
+
 public class GUI extends JFrame{
 	
 	JFrame f;
@@ -16,18 +18,39 @@ public class GUI extends JFrame{
 	
 	Board gameBoard;
 	
+	int startX;
+	int startY;
+	
+	int endX;
+	int endY;
+	
+	//board setup
+		public void setUpGUI() {
+			gameBoard = new Board();
+			gameBoard.setUp();
+		}
+	//checks to see if game is over
+		public boolean gameOverGUI() {
+			return gameBoard.gameOver();
+		}
+	//checks to see if play is possible
+		public void playGUI(int startX, int startY, int endX, int endY) {
+			gameBoard.play(startX, startY, endX, endY);
+		}
 	//makes the GUI for the board
-		public void frameGUI(Board gameBoard) {
+		public void frameGUI() {
 			f = new JFrame("Chess");
 			f.setVisible(true);
 			f.setSize(1000, 1000);
 			f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
-			this.gameBoard = gameBoard;
-			
-			f.add(this.boardGUI());
+			f.add(boardGUI());
 		}
-	//creates board that tiles will be added to
+	//updates the frame
+		public void updateGUI() {
+		    f.repaint();
+		}
+		//creates board that tiles will be added to
 		public JPanel boardGUI() {
 			p = new JPanel(new GridLayout(8,8));
 			GridBagConstraints c = new GridBagConstraints();
@@ -35,7 +58,7 @@ public class GUI extends JFrame{
 				for(int y=0; y<8; y++) {
 					c.gridx = x;
 					c.gridy = y;
-					p.add(this.tileGUI(gameBoard.giveTile(x,y)),c);
+					p.add(tileGUI(gameBoard.giveTile(x,y)),c);
 				}
 			}
 			return p;
@@ -62,20 +85,133 @@ public class GUI extends JFrame{
 			return tile;
 		}
 	//adds action to tiles
-		public JPanel gameAction(boolean turn) {
+		public void gameAction(boolean turn) {
 			for(int x=0; x<8; x++) {
 				for(int y=0; y<8; y++) {
-					if((gameBoard.givePiece(x, y)!=null)&&(turn)) {
-						JPanel act = new JPanel();
-						act = this.tileGUI(gameBoard.giveTile(x, y));
-						act.addMouseListener(new MouseListener() {
-							
+					if((gameBoard.giveTile(x, y).givePiece()!=null)&&(turn)&&(gameBoard.isWhite(x, y))) {
+						JPanel start = new JPanel();
+						int tempX = x;
+						int tempY = y;
+						start = this.tileGUI(gameBoard.giveTile(x, y));
+						start.addMouseListener(new MouseListener() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								startX = tempX;
+								startY = tempY;
+							}
+
+							@Override
+							public void mouseReleased(MouseEvent e) {
+								// TODO Auto-generated method stub
+								//do nothing
+							}
+
+							@Override
+							public void mouseEntered(MouseEvent e) {
+								// TODO Auto-generated method stub
+								//do nothing
+							}
+
+							@Override
+							public void mouseExited(MouseEvent e) {
+								// TODO Auto-generated method stub
+								//do nothing
+							}
+
+							@Override
+							public void mousePressed(MouseEvent e) {
+								// TODO Auto-generated method stub
+								//do nothing
+							}
 						});
 					}
 						
 				}
 			}
-			
-			
+			for(int x=0; x<8; x++) {
+				for(int y=0; y<8; y++) {
+					if((gameBoard.giveTile(x, y).givePiece()!=null)&&(!turn)&&(!gameBoard.isWhite(x, y))) {
+						JPanel start = new JPanel();
+						int tempX = x;
+						int tempY = y;
+						start = this.tileGUI(gameBoard.giveTile(x, y));
+						start.addMouseListener(new MouseListener() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								startX = tempX;
+								startY = tempY;;
+							}
+
+							@Override
+							public void mouseReleased(MouseEvent e) {
+								// TODO Auto-generated method stub
+								//do nothing
+							}
+
+							@Override
+							public void mouseEntered(MouseEvent e) {
+								// TODO Auto-generated method stub
+								//do nothing
+							}
+
+							@Override
+							public void mouseExited(MouseEvent e) {
+								// TODO Auto-generated method stub
+								//do nothing
+							}
+
+							@Override
+							public void mousePressed(MouseEvent e) {
+								// TODO Auto-generated method stub
+								//do nothing
+							}
+						});
+					}
+						
+				}
+			}
+			for(int x=0; x<8; x++) {
+				for(int y=0; y<8; y++) {
+					if(gameBoard.giveTile(startX, startY).givePiece().isVaild(x, y)) {
+						JPanel start = new JPanel();
+						int tempX = x;
+						int tempY = y;
+						start = this.tileGUI(gameBoard.giveTile(x, y));
+						start.addMouseListener(new MouseListener() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								endX = tempX;
+								endY = tempY;
+							}
+
+							@Override
+							public void mouseReleased(MouseEvent e) {
+								// TODO Auto-generated method stub
+								//do nothing
+							}
+
+							@Override
+							public void mouseEntered(MouseEvent e) {
+								// TODO Auto-generated method stub
+								//do nothing
+							}
+
+							@Override
+							public void mouseExited(MouseEvent e) {
+								// TODO Auto-generated method stub
+								//do nothing
+							}
+
+							@Override
+							public void mousePressed(MouseEvent e) {
+								// TODO Auto-generated method stub
+								//do nothing
+							}
+						});
+					}
+						
+				}
+			}
+			gameBoard.play(startX, startY, endX, endY);
 		}
 }
