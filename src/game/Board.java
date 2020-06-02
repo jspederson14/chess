@@ -44,6 +44,56 @@ public class Board{
 	public Tile giveTile(int x, int y) {
 		return board[y][x];
 	}
+	//checks to see if path is clear
+	public boolean isClear(int startX, int startY, int endX, int endY) {
+		int largeX;
+		int smallX;
+		int largeY;
+		int smallY;
+		Piece p = board[startY][startX].givePiece();
+		if(startX>endX) {
+			largeX = startX;
+			smallX = endX;
+		}
+		else {
+			largeX = endX;
+			smallX= startX;
+		}
+		if(startY>endY) {
+			largeY = startY;
+			smallY = endY;
+		}
+		else {
+			largeY = endY;
+			smallY = startY;
+		}
+		if(smallX!=largeX && smallY!=largeY) {
+			for(int x = smallX; x>largeX; x++) {
+				for(int y = smallY; y>largeY; y++) {
+					if(p.isVaild(x, y))
+						if(board[y][x].givePiece()!=null)
+							return false;
+				}
+			}
+		}
+		if(smallX==largeX && smallY!=largeY) {
+			int x = smallX;
+			for(int y = smallY; y>largeY; y++) {
+				if(p.isVaild(x, y))
+					if(board[y][x].givePiece()!=null)
+						return false;
+			}
+		}
+		if(smallY==largeY && smallX!=largeX) {
+			int y = smallY;
+			for(int x = smallX; x>largeX; x++) {
+				if(p.isVaild(x, y))
+					if(board[y][x].givePiece()!=null)
+						return false;
+			}
+		}
+		return true;
+	}
 	//sets up the board for a game
 	public void setUp() {
 		//adding all the pawns
@@ -74,7 +124,7 @@ public class Board{
 	//allows for a piece to be passed between tiles and returns if move was able to be made
 	public boolean play(int startX, int startY, int endX, int endY) {
 		Piece curr = board[startY][startX].givePiece();
-		if(curr.capture(endX, endY, board[endY][endX])) {
+		if((curr.capture(endX, endY, board[endY][endX])&&isClear(startX,startY,endX,endY))) {
 			out.add(board[endY][endX].givePiece());
 			board[startY][startX].givePiece().x = endX;
 			board[startY][startX].givePiece().y = endY;
@@ -82,7 +132,7 @@ public class Board{
 			board[startY][startX].addPiece(null);
 			return true;
 		}
-		else if(curr.move(endX, endY)) {
+		else if((curr.move(endX, endY))&&isClear(startX,startY,endX,endY)) {
 			board[startY][startX].givePiece().x = endX;
 			board[startY][startX].givePiece().y = endY;
 			board[startY][startX].addPiece(null);
