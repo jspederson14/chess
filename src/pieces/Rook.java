@@ -13,7 +13,9 @@ public class Rook extends Piece{
 		return "error";
 	}
 	@Override
-	public boolean isVaild(int x, int y) {
-		return true;
+	public boolean isVaild(int endX, int endY) {
+		if((this.x == endX)||(this.y==endY))
+			return true;
+		return false;
 	}
 }

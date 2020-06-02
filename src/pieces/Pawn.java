@@ -21,7 +21,7 @@ public class Pawn extends Piece{
 				return true;
 		}
 		if(this.color.equals("Black")) {
-			if((this.x==endX&& this.y+1==endY)||(this.y==1 && this.x==endX && this.y+2==endY))
+			if((this.x==endX && this.y+1==endY)||(this.y==1 && this.x==endX && this.y+2==endY))
 				return true;
 		}
 		return false;
@@ -30,11 +30,11 @@ public class Pawn extends Piece{
 	public boolean capture(int endX, int endY, Tile t) {
 		if(t.givePiece()!=null) {
 			if((this.color.equals("White"))&&(!t.givePiece().giveColor().equals(color))) {
-				if((t.giveX()==endX && t.giveY()==endY)&&(this.x-1==endX && this.y-1==endY)||(this.x+1==endX && this.y-1==endY))
+				if((t.giveX()==endX && t.giveY()==endY)&&((this.x-1==endX && this.y-1==endY)||(this.x+1==endX && this.y-1==endY)))
 					return true;
 				}
 				if((this.color.equals("Black"))&&(!t.givePiece().giveColor().equals(color))) {
-					if((t.giveX()==endX && t.giveY()==endY)&&(this.x+1==endX&& this.y+1==endY)||(this.x-1==endX&& this.y+1==endY))
+					if((t.giveX()==endX && t.giveY()==endY)&&((this.x+1==endX && this.y+1==endY)||(this.x-1==endX && this.y+1==endY)))
 						return true;
 				}
 			}

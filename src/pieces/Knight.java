@@ -13,8 +13,16 @@ public class Knight extends Piece{
 		return "error";
 	}
 	@Override
-	public boolean isVaild(int x, int y) {
-		return true;
+	public boolean isVaild(int endX, int endY) {
+		if((this.x == endX-1)&&((this.y == endY-2)||(this.y == endY+2)))
+			return true;
+		if((this.x == endX+1)&&((this.y == endY-2)||(this.y == endY+2)))
+			return true;
+		if((this.x == endX-2)&&((this.y == endY-1)||(this.y == endY+1)))
+			return true;
+		if((this.x == endX+2)&&((this.y == endY-1)||(this.y == endY+1)))
+			return true;
+		return false;
 	}
 
 }

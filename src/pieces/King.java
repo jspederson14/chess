@@ -13,8 +13,12 @@ public class King extends Piece{
 		return "error";
 	}
 	@Override
-	public boolean isVaild(int x, int y) {
-		return true;
+	public boolean isVaild(int endX, int endY) {
+		if((this.x-1==endX && this.y-1==endY)||(this.x+1==endX && this.y-1==endY)||
+				(this.x+1==endX&& this.y+1==endY)||(this.x-1==endX&& this.y+1==endY)||
+				(this.x==endX && this.y-1==endY)||(this.x==endX && this.y+1==endY))
+			return true;
+		return false;
 	}
 
 }

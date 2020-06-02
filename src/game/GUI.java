@@ -98,6 +98,7 @@ public class GUI extends JFrame{
 							public void mouseClicked(MouseEvent e) {
 								startX = tempX;
 								startY = tempY;
+								System.out.print("beep");
 							}
 
 							@Override
@@ -139,7 +140,8 @@ public class GUI extends JFrame{
 							@Override
 							public void mouseClicked(MouseEvent e) {
 								startX = tempX;
-								startY = tempY;;
+								startY = tempY;
+								System.out.print("beep");
 							}
 
 							@Override
@@ -182,6 +184,7 @@ public class GUI extends JFrame{
 							public void mouseClicked(MouseEvent e) {
 								endX = tempX;
 								endY = tempY;
+								System.out.print("bp");
 							}
 
 							@Override

@@ -3,10 +3,11 @@ import java.util.ArrayList;
 
 import pieces.*;
 
-//class to represnt the board
+//class to represent the board
 public class Board{
 	public Tile[][] board = new Tile[8][8];
 	public ArrayList<Piece> out = new ArrayList<Piece>();
+	public boolean turn;
 	//makes a board to with tiles
 	public Board(){
 		for(int i=0; i<board.length; i++) {
@@ -34,6 +35,10 @@ public class Board{
 			return true;
 		return false;
 			
+	}
+	//gives turn. white is true black is false
+	public boolean turn() {
+		return turn;
 	}
 	//gives a tile for the given coordinates
 	public Tile giveTile(int x, int y) {
@@ -64,16 +69,22 @@ public class Board{
 		board[7][5].addPiece(new Bishop(7,5,"White"));
 		board[7][6].addPiece(new Knight(7,6,"White"));
 		board[7][7].addPiece(new Rook(7,7,"White"));
+		turn = true;
 	}
 	//allows for a piece to be passed between tiles and returns if move was able to be made
 	public boolean play(int startX, int startY, int endX, int endY) {
 		Piece curr = board[startY][startX].givePiece();
 		if(curr.capture(endX, endY, board[endY][endX])) {
 			out.add(board[endY][endX].givePiece());
-			board[endY][endX].addPiece(null);
+			board[startY][startX].givePiece().x = endX;
+			board[startY][startX].givePiece().y = endY;
+			board[endY][endX].addPiece(curr);
+			board[startY][startX].addPiece(null);
 			return true;
 		}
 		else if(curr.move(endX, endY)) {
+			board[startY][startX].givePiece().x = endX;
+			board[startY][startX].givePiece().y = endY;
 			board[startY][startX].addPiece(null);
 			board[endY][endX].addPiece(curr);
 			return true;

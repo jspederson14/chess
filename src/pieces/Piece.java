@@ -32,11 +32,12 @@ public abstract class Piece {
 	//returns if a capture is can be made
 	public boolean capture(int endX, int endY, Tile t) {
 		if(isVaild(endX,endY))
-			if(!t.givePiece().giveColor().equals(color))
-				return true;
+			if(t.givePiece()!=null)
+				if(!t.givePiece().giveColor().equals(color))
+					return true;
 		return false;
 	}
-	//checks to see if move is vaild
+	//checks to see if move is valid
 	public abstract boolean isVaild(int endX, int endY);
 	
 	//gives what type of piece it is
