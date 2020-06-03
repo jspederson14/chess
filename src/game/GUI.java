@@ -71,6 +71,7 @@ public class GUI extends JFrame{
 				c.gridx = 0;
 				c.gridy = 2;
 				p.add(l2,c);
+				f.add(p);
 				
 			}
 			else {
@@ -151,10 +152,11 @@ public class GUI extends JFrame{
 					if(picked) {
 						endX = gameTile.x;
 						endY = gameTile.y;
-						done = true;
-						gameBoard.play(startX, startY, endX, endY);
-						updateGUI();
-						frameGUI();
+						done = gameBoard.play(startX, startY, endX, endY);
+						if(done) {
+							updateGUI();
+							frameGUI();
+						}
 					}
 					if((!picked)&&(vaildStart(gameTile.x,gameTile.y))) {
 						tile.setBackground(Color.RED);
@@ -182,7 +184,7 @@ public class GUI extends JFrame{
 		}
 	//checks to see if valid start piece
 		public boolean vaildStart(int startX, int startY) {
-			if((gameBoard.giveTile(startX, startY).givePiece()!=null)&&(!picked)) {
+			if((gameBoard.giveTile(startX, startY).givePiece()!=null)) {
 				if(turn) {
 					if(gameBoard.giveTile(startX, startY).givePiece().giveColor().equals("White"))
 						return true;

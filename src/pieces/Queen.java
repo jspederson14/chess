@@ -14,7 +14,7 @@ public class Queen extends Piece{
 	}
 	@Override
 	public boolean isVaild(int endX, int endY) {
-		if((this.x-endX) == (this.y-endY)||(this.x == endX)||(this.y==endY))
+		if((this.x-endX) == (this.y-endY)||(this.x == endX)||(this.y==endY)||(this.x-endX)==(endY-this.y)||(this.y-endY)==(endX-this.x))
 			return true;
 		return false;
 	}
